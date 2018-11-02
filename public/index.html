@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Police Data</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+    <link href="styles.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div id="output">
+
+    </div>
+
+
+    <script>
+
+        //Create a connection
+        var socket = io.connect('http://localhost:4000');
+
+
+        socket.on('simulated-data', function (data) {
+
+            //All values of each json object
+            let incident_num = data.A;
+            let date_time = data.B;
+            let day = data.C;
+            let stno = data.D;
+            let street_name = data.F;
+            let street_type = data.G;
+            let full_address = data.H;
+            let call_type = data.I;
+            let disposition = data.J;
+            let beat = data.K;
+            let priority = data.L;
+            let latitude = data.M;
+            let longitude = data.N;
+
+
+            output.innerHTML = incident_num + "   " + date_time + "   " + day + "   " + stno + "   " + street_name + "   " + street_type + "   " + full_address + "   " + call_type + "   " + disposition + "   " + beat + "   " + priority + "   " + latitude + "   " + longitude;
+        });
+
+    </script>
+
+</body>
+
+</html>
