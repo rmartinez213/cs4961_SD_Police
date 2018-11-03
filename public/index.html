@@ -9,17 +9,63 @@
 </head>
 
 <body>
+    <base href="https://polygit.org/px-*+PredixDev+*/webcomponentsjs+v1.0.22/polymer+v2.3.1/components/">
+    <script src="webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="polymer/polymer.html" />
+    <link rel="import" href="px-theme/px-theme-styles.html" />
+    <link rel="import" href="px-map-marker-group/px-map-marker-group.html" />
+    <link rel="import" href="px-map/px-map.html" />
+    <link rel="import" href="px-map/px-map-tile-layer.html" />
+    <link rel="import" href="px-map/px-map-marker-group.html" />
+    <link rel="import" href="px-d3-imports/px-polygit-imports-d3.html" />
+    <link rel="import" href="px-map/px-map-popup-data.html" />
+    <link rel="import" href="px-map/px-map-marker-static.html" />
+    <link rel="import" href="px-branding-bar/px-branding-bar.html" />
+    <link rel="import" href="px-simple-horizontal-bar-chart/px-simple-horizontal-bar-chart.html" />
+    <link rel="import" href="px-map/px-map-control-zoom.html" />
+    <link rel="import" href="px-map-control-zoom/px-map-control-zoom.html" />
 
-    <div id="output">
+    <script src="https://d3js.org/d3.v3.min.js"></script>
 
+    <custom-style>
+        <style include="px-theme-styles" is="custom-style"></style>
+    </custom-style>
+    <px-branding-bar application-title="Predix Design System"></px-branding-bar>
+
+
+    <div style="height:600px; width:800px; display:flex; padding-right:10px;">
+
+        <px-map zoom="11" flex-to-size lat="32.772404" lng="-117.029327">
+            <px-map-control-zoom position="topright"></px-map-control-zoom>
+
+            <div id="output">
+
+            </div>
+
+
+            <px-map-tile-layer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'>
+            </px-map-tile-layer>
+        </px-map>
     </div>
 
 
+    <div class="graph" style="position: absolute; top:60px; right: 15px; padding-right: 40px  ">
+        <h1> Priority Call Stats</h1>
+
+        <div id="output1" style="height:200px; width: 150px; ">
+
+        </div>
+
+    </div>
     <script>
 
         //Create a connection
         var socket = io.connect('http://localhost:4000');
 
+        let priority1 = 0; //id 1
+        let priority2 = 0 // id 2
+        let priority3 = 0 //id 3
+        let priority4 = 0 //id 4
 
         socket.on('simulated-data', function (data) {
 
@@ -38,8 +84,45 @@
             let latitude = data.M;
             let longitude = data.N;
 
+            output.innerHTML += '<px-map-marker-static id="Godzilla" style="display:none;" lat="' + latitude + '" lng="' + longitude + '" type="info">' +
+                '<px-map-popup-data title="' + incident_num + '" data=\'{"Year":"' + date_time
+                + '","Date":"' + date_time
+                + '","Location":"' + full_address
+                + '","Level of Emergency":"' + priority
+                + '","Call Type":"' + call_type
+                + '","CITY":"San diego"}\'>'
+                + '</px-map-popup-data> </px-map-marker-static>';
 
-            output.innerHTML = incident_num + "   " + date_time + "   " + day + "   " + stno + "   " + street_name + "   " + street_type + "   " + full_address + "   " + call_type + "   " + disposition + "   " + beat + "   " + priority + "   " + latitude + "   " + longitude;
+
+
+
+            switch (Number(priority)) { // Regulating the count to be higher/lower  
+                case 1:
+                    priority1++;
+
+                    break;
+                case 2:
+                    priority2++;
+
+                    break;
+                case 3:
+                    priority3++;
+
+                    break;
+                case 4:
+                    priority4++;;
+
+                    break;
+
+            }
+
+
+
+            output1.innerHTML = ' <px-simple-horizontal-bar-chart ' +
+                'bar-labels="values"' +
+                'legend-labels=\'["Level 1", "Level 2", "Level3", "Level4"]\'' +
+                'chart-data=\'[' + priority1 + ',' + priority2 + ',' + priority3 + ',' + priority4 + ']\'></px-simple-horizontal-bar-chart>';
+
         });
 
     </script>
