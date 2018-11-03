@@ -24,6 +24,8 @@
     <link rel="import" href="px-simple-horizontal-bar-chart/px-simple-horizontal-bar-chart.html" />
     <link rel="import" href="px-map/px-map-control-zoom.html" />
     <link rel="import" href="px-map-control-zoom/px-map-control-zoom.html" />
+    <link rel="import" href="px-key-value-pair/px-key-value-pair.html" />
+
 
     <script src="https://d3js.org/d3.v3.min.js"></script>
 
@@ -57,11 +59,19 @@
         </div>
 
     </div>
+
+    <div class="calls" style="position: absolute; bottom:10px; right: 15px; padding-right: 40px  ">
+        <h1>TOTAL CALLS</h1>
+
+        <div id="output2" style="height:200px; width: 150px; ">
+
+        </div>
+    </div>
     <script>
 
         //Create a connection
         var socket = io.connect('http://localhost:4000');
-
+        let calls_this_year = 0;
         let priority1 = 0; //id 1
         let priority2 = 0 // id 2
         let priority3 = 0 //id 3
@@ -122,6 +132,25 @@
                 'bar-labels="values"' +
                 'legend-labels=\'["Level 1", "Level 2", "Level3", "Level4"]\'' +
                 'chart-data=\'[' + priority1 + ',' + priority2 + ',' + priority3 + ',' + priority4 + ']\'></px-simple-horizontal-bar-chart>';
+
+
+            if (Number(priority) > 0) {
+                calls_this_year++;
+            }
+            var x;
+            if (Number(calls_this_year) > 1) {
+                x = "calls"
+
+            }
+            else {
+                x = "call"
+            }
+
+            console.log(calls_this_year);
+            output2.innerHTML = '<px-key-value-pair ' +
+                'label="This Year" ' +
+                'value= "' + calls_this_year + '" ' +
+                'uom=" ' + x + '" size="alpha"></px-key-value-pair>';
 
         });
 
