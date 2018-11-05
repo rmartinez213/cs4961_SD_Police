@@ -4,7 +4,8 @@ const fs = require('fs');           //To read file (library)
 let obj = [];
 var simulating = false;  //To prevent two different
 let id;  //Value that increments through the data set
-
+let timeOut;
+let time = 3000;
 
 // App setup
 var app = express(); 
@@ -29,14 +30,20 @@ io.on('connection',function(socket){ // Fires callback function when client conn
 		console.log('Simulating to first client connected');
         simulating = true;
         readMe();
-	}
+    }
+    socket.on('changeTime', (data) => {
+        console.log(data);
+        clearTimeout(timeOut);
+        time = data;
+        readMe();
+    })
 });
 
 //Reads the file and parses everything into an object
 function readMe(){
     console.log("Parsing JSON");
     obj = JSON.parse(fs.readFileSync('public/pd_calls.json', 'utf8')); //read file from pd_calls.json
-    setTimeout(generate, 3000)
+    timeOut = setTimeout(generate, time)
 }
 
 //Sends data to clients [every 5 seconds]
@@ -47,7 +54,7 @@ function generate(){
 	io.sockets.emit('simulated-data', obj[id]); 
     console.log("Sending again...")
     console.log(obj[id]); //Test purposes
-	setTimeout(generate, 5000);
+	timeOut = setTimeout(generate, time);
 }
 
 //Randomly selects police data start year

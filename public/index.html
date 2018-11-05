@@ -66,8 +66,12 @@
         <div id="output2" style="height:200px; width: 150px; ">
 
         </div>
+
+        <button id='button'>click me</button>
     </div>
     <script>
+
+        
 
         //Create a connection
         var socket = io.connect('http://localhost:4000');
@@ -76,6 +80,10 @@
         let priority2 = 0 // id 2
         let priority3 = 0 //id 3
         let priority4 = 0 //id 4
+
+        document.getElementById('button').onclick = () => {
+            socket.emit('changeTime', 10000);
+        }
 
         socket.on('simulated-data', function (data) {
 
