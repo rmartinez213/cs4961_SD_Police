@@ -4,13 +4,11 @@ const fs = require('fs');           //To read file (library)
 let obj = [];
 var simulating = false;  //To prevent two different
 let id;  //Value that increments through the data set
-let timeOut;
-let time = 3000;
 
 // App setup
-var app = express(); 
-var server = app.listen(4000, function(){
-     console.log('Server is running. On port 4000');
+var app = express();
+var server = app.listen(4000, function () {
+    console.log('Server is running. On port 4000');
 });
 
 //Acces work files from public folder
@@ -20,49 +18,41 @@ app.use(express.static('public'));
 var io = socket(server);
 
 
-io.on('connection',function(socket){ // Fires callback function when client connects
-	if(simulating){
-        console.log('Simulating to new client...');  
-	}
+io.on('connection', function (socket) { // Fires callback function when client connects
+    if (simulating) {
+        console.log('Simulating to new client...');
+        generate();
+    }
 
-	else{
-		console.log('Starting server simulation...');
-		console.log('Simulating to first client connected');
+    else {
+        console.log('Starting server simulation...');
+        console.log('Simulating to first client connected');
         simulating = true;
         readMe();
     }
-    socket.on('changeTime', (data) => {
-        console.log(data);
-        clearTimeout(timeOut);
-        time = data;
-        readMe();
-    })
 });
 
 //Reads the file and parses everything into an object
-function readMe(){
+function readMe() {
     console.log("Parsing JSON");
     obj = JSON.parse(fs.readFileSync('public/pd_calls.json', 'utf8')); //read file from pd_calls.json
-    timeOut = setTimeout(generate, time)
+    generate();
 }
 
 //Sends data to clients [every 5 seconds]
-function generate(){
-
-    randomNumber(1, obj.length);  //Generate a a random data set 
-
-	io.sockets.emit('simulated-data', obj[id]); 
+function generate() {
+    io.sockets.emit('simulated-data', obj);
     console.log("Sending again...")
-    console.log(obj[id]); //Test purposes
-	timeOut = setTimeout(generate, time);
 }
 
-//Randomly selects police data start year
-function randomNumber(min, max){
-    id  = Math.floor((Math.random() * (max - min)) + min) ; //Get random variables  
-    
-    if (id == 0)
-        randomNumber();
-    else
-        id = id;
-}
+
+
+
+
+        //Change time to simulate
+        // socket.on('changeTime', (data) => {
+        //     console.log(data);
+        //     clearTimeout(timeOut);
+        //     time = data;
+        //     readMe();
+        // })

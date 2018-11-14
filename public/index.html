@@ -25,7 +25,7 @@
     <link rel="import" href="px-map/px-map-control-zoom.html" />
     <link rel="import" href="px-map-control-zoom/px-map-control-zoom.html" />
     <link rel="import" href="px-key-value-pair/px-key-value-pair.html" />
-    <link rel="import" href="px-dropdown/px-dropdown.html"/>
+    <link rel="import" href="px-dropdown/px-dropdown.html" />
 
 
     <script src="https://d3js.org/d3.v3.min.js"></script>
@@ -63,18 +63,37 @@
         <h1>TOTAL CALLS</h1>
 
         <div id="output2" style="height:200px; width: 150px; ">
-            
+
         </div>
 
 
-       
-        <button id='button'>click me</button>
+        <!-- Button for simulating all data -->
+        <button id='button'>simulate all data</button>
+
+        <!--Buttons for changing filter simulation-->
+        <button id='simJanuary'>simulate january</button>
+        <button id='simFebruary'>simulate february</button>
+        <button id='simMarch'>simulate march</button>
+        <button id='simApril'>simulate april</button>
+        <button id='simMay'>simulate may</button>
+        <button id='simJune'>simulate june</button>
+        <button id='simJuly'>simulate july</button>
+        <button id='simAugust'>simulate august</button>
+
+
+        <!-- Buttons for changing the refresh rate -->
+        <button id='refreshRate1'>Refresh 1</button>
+        <button id='refreshRate5'>Refresh 5</button>
+        <button id='refreshRate10'>Refresh 10</button>
+
+        <button id='simAll'>Simulate ALL</button>
+        <button id='simClear'>clear simulation</button>
+
+
     </div>
 
-    <px-simple-horizontal-bar-chart 
-    bar-labels="values" 
-    legend-labels='["Level 1", "Level 2", "Level3", "Level4"]' 
-    chart-data='[0,0,0,0]' id="bar-graph">
+    <px-simple-horizontal-bar-chart bar-labels="values" legend-labels='["Level 1", "Level 2", "Level3", "Level4"]'
+        chart-data='[0,0,0,0]' id="bar-graph">
 
     </px-simple-horizontal-bar-chart>
 
@@ -86,95 +105,278 @@
 
 
 
-    <script>    
+    <script>
+        var socketObject;
+        var monthObj;
+        var timer;
+        var refreshRate = 5000;
 
         //Create a connection
         var socket = io.connect('http://localhost:4000');
-        let calls_this_year = 0;
-        let priority1 = 0; //id 1
-        let priority2 = 0 // id 2
-        let priority3 = 0 //id 3
-        let priority4 = 0 //id 4
 
-        document.getElementById('button').onclick = () => {
-            socket.emit('changeTime', 10000);
-        }
-
+        //Pass the data from the WebSocket to a variable
         socket.on('simulated-data', function (data) {
-
-            //All values of each json object
-            let incident_num = data.A;
-            let date_time = data.B;
-            let day = data.C;
-            let stno = data.D;
-            let street_name = data.F;
-            let street_type = data.G;
-            let full_address = data.H;
-            let call_type = data.I;
-            let disposition = data.J;
-            let beat = data.K;
-            let priority = data.L;
-            let latitude = data.M;
-            let longitude = data.N;
-
-            output.innerHTML += '<px-map-marker-static id="Godzilla" style="display:none;" lat="' + latitude + '" lng="' + longitude + '" type="info">' +
-                '<px-map-popup-data title="' + incident_num + '" data=\'{"Year":"' + date_time
-                + '","Date":"' + date_time
-                + '","Location":"' + full_address
-                + '","Level of Emergency":"' + priority
-                + '","Call Type":"' + call_type
-                + '","CITY":"San diego"}\'>'
-                + '</px-map-popup-data> </px-map-marker-static>';
-
-
-
-
-            switch (Number(priority)) { // Regulating the count to be higher/lower  
-                case 1:
-                    priority1++;
-
-                    break;
-                case 2:
-                    priority2++;
-
-                    break;
-                case 3:
-                    priority3++;
-
-                    break;
-                case 4:
-                    priority4++;;
-                    break;
-            }
-
-            //Increments bar graph
-            document.getElementById('bar-graph').setAttribute('chart-data', '[' + priority1 + ',' + priority2 + ',' + priority3 + ',' + priority4 + ']');
-            
-
-            if (Number(priority) > 0) {
-                calls_this_year++;
-            }
-            var x;
-            if (Number(calls_this_year) > 1) {
-                x = "calls"
-
-            }
-            else {
-                x = "call"
-            }
-
-            console.log(calls_this_year);
-            output2.innerHTML = '<px-key-value-pair ' +
-                'label="This Year" ' +
-                'value= "' + calls_this_year + '" ' +
-                'uom=" ' + x + '" size="alpha"></px-key-value-pair>';
-
+            socketObject = data;
+            console.log(data[0].A);
         });
 
 
+        //For simulation change time
+        document.getElementById('button').onclick = () => {
+            simulate(socketObject);
+        }
+
+        /********************************/
+        /******* Changing Simulation ****/
+        /********************************/
+
+
+        //For simulation change January
+        document.getElementById('simJanuary').onclick = () => {
+            console.log("Simulate January");
+            simulateMonth(1);
+            console.log(monthObj.length);
+        }
+
+        //For simulation for February
+        document.getElementById('simFebruary').onclick = () => {
+            console.log("Simulate February");
+            simulateMonth(2);
+            console.log(monthObj.length);
+        }
+
+        //For simulation for March
+        document.getElementById('simMarch').onclick = () => {
+            console.log("Simulate March");
+            simulateMonth(3);
+            console.log(monthObj.length);
+        }
+
+        //For simulation for April
+        document.getElementById('simApril').onclick = () => {
+            console.log("Simulate April");
+            simulateMonth(4);
+            console.log(monthObj.length);
+        }
+
+        //For simulation for May
+        document.getElementById('simMay').onclick = () => {
+            console.log("Simulate May");
+            simulateMonth(5);
+            console.log(monthObj.length);
+        }
+
+        //For simulation for June
+        document.getElementById('simJune').onclick = () => {
+            console.log("Simulate June");
+            simulateMonth(6);
+            console.log(monthObj.length);
+        }
+
+        //For simulation for July
+        document.getElementById('simJuly').onclick = () => {
+            console.log("Simulate July");
+            simulateMonth(7);
+            console.log(monthObj.length);
+        }
+
+        //For simulation for August
+        document.getElementById('simAugust').onclick = () => {
+            console.log("Simulate August");
+            simulateMonth(8);
+            console.log(monthObj.length);
+        }
+
+        //DISPLAY ALL
+        document.getElementById('simAll').onclick = () => {
+            displayAll(socketObject);
+        }
+
+        /***************************************/
+        /********* Change Refresh Rate *********/
+        /***************************************/
+
+        document.getElementById('refreshRate1').onclick = () => {
+            refreshRate = 1000;
+            console.log("Refresh rate is now 1...");
+        }
+
+        document.getElementById('refreshRate5').onclick = () => {
+            refreshRate = 5000;
+            console.log("Refresh rate is now 5...");
+        }
+
+        document.getElementById('refreshRate10').onclick = () => {
+            refreshRate = 10000;
+            console.log("Refresh rate is now 10...");
+        }
+
+
+        /***************************************/
+        /************** Clear Map **************/
+        /***************************************/
+
+        document.getElementById('simClear').onclick = () => {
+            clearMap();
+            console.log("Clearing Map...");
+        }
+
+        /***************************************/
+        /**** Function that simulate months ****/
+        /***************************************/
+
+        function simulateMonth(month) {
+            monthObj = socketObject.filter(function (val) {
+                return (val.B.substring(0, 1) === month.toString())
+            });
+
+            simulate(monthObj);
+        }
+
+
+        // let incident_num = simObj[Number(counter)].A;
+        // let date_time = simObj[Number(counter)].B;
+        // let day = simObj[Number(counter)].C;
+        // let stno = simObj[Number(counter)].D;
+        // let street_name = simObj[Number(counter)].F;
+        // let street_type = simObj[Number(counter)].G;
+        // let full_address = simObj[Number(counter)].H;
+        // let call_type = simObj[Number(counter)].I;
+        // let disposition = simObj[Number(counter)].J;
+        // let beat = simObj[Number(counter)].K;
+        // var priority = simObj[Number(counter)].L;
+        // var latitude = simObj[Number(counter)].M;
+        // var longitude = simObj[Number(counter)].N;
+
+        /********TESTING***************/
+
+        function displayAll(socketObject) {
+
+            for (var i = 2; i < 100; i++) {
+                console.log(socketObject[i].M);
+
+                output.innerHTML += '<px-map-marker-static id="PoliceCall" style="display:none;" lat="' + socketObject[i].M + '" lng="' + socketObject[i].N + '" type="info">' +
+                    '<px-map-popup-data title="' + socketObject[i].A + '" data=\'{"Year":"' + socketObject[i].B
+                    + '","Date":"' + socketObject[i].B
+                    + '","Location":"' + socketObject[i].H
+                    + '","Level of Emergency":"' + socketObject[i].L
+                    + '","Call Type":"' + socketObject[i].I
+                    + '","CITY":"San diego"}\'>'
+                    + '</px-map-popup-data> </px-map-marker-static>';
+
+
+
+            }
+
+        }
+
+        function clearMap() {
+            output.innerHTML = "";
+        }
+
+        /***************************************/
+        /**** Function that simulate months ****/
+        /***************************************/
+
+
+        function simulate(simObj) {
+
+            var calls_this_year = 0;
+            var priority1 = 0; //id 1
+            var priority2 = 0 // id 2
+            var priority3 = 0 //id 3
+            var priority4 = 0 //id 4
+            var counter = 2;
+
+
+            if (timer) {
+                console.log("plz clear");
+                clearTimeout(timer);
+                timer = 0;
+            }
+
+
+
+            startSimulation(simObj);
+
+            function startSimulation(simObj) {
+
+                //All values of each json object
+                let incident_num = simObj[Number(counter)].A;
+                let date_time = simObj[Number(counter)].B;
+                let day = simObj[Number(counter)].C;
+                let stno = simObj[Number(counter)].D;
+                let street_name = simObj[Number(counter)].F;
+                let street_type = simObj[Number(counter)].G;
+                let full_address = simObj[Number(counter)].H;
+                let call_type = simObj[Number(counter)].I;
+                let disposition = simObj[Number(counter)].J;
+                let beat = simObj[Number(counter)].K;
+                var priority = simObj[Number(counter)].L;
+                var latitude = simObj[Number(counter)].M;
+                var longitude = simObj[Number(counter)].N;
+
+
+                console.log("latitude: " + latitude);
+                console.log("longitude: " + longitude);
+                console.log("Date and TIme: " + date_time)
+
+                output.innerHTML += '<px-map-marker-static id="PoliceCall" style="display:none;" lat="' + latitude + '" lng="' + longitude + '" type="info">' +
+                    '<px-map-popup-data title="' + incident_num + '" data=\'{"Year":"' + date_time
+                    + '","Date":"' + date_time
+                    + '","Location":"' + full_address
+                    + '","Level of Emergency":"' + priority
+                    + '","Call Type":"' + call_type
+                    + '","CITY":"San diego"}\'>'
+                    + '</px-map-popup-data> </px-map-marker-static>';
+
+
+                switch (Number(priority)) { // Regulating the count to be higher/lower  
+                    case 1:
+                        priority1++;
+                        break;
+                    case 2:
+                        priority2++;
+                        break;
+                    case 3:
+                        priority3++;
+                        break;
+                    case 4:
+                        priority4++;;
+                        break;
+                }
+
+                //Increments bar graph
+                document.getElementById('bar-graph').setAttribute('chart-data', '[' + priority1 + ',' + priority2 + ',' + priority3 + ',' + priority4 + ']');
+
+
+                if (Number(priority) > 0) {
+                    calls_this_year++;
+                }
+                var x;
+                if (Number(calls_this_year) > 1) {
+                    x = "calls"
+
+                }
+                else {
+                    x = "call"
+                }
+
+                //console.log(calls_this_year);
+                output2.innerHTML = '<px-key-value-pair ' +
+                    'label="This Year" ' +
+                    'value= "' + calls_this_year + '" ' +
+                    'uom=" ' + x + '" size="alpha"></px-key-value-pair>';
+
+                counter = counter + 1;
+                console.log(counter);
+                timer = setTimeout(function () {
+                    startSimulation(simObj);
+                }, refreshRate);
+            }
+        }
 
     </script>
-
 </body>
 
 </html>
