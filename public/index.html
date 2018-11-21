@@ -93,7 +93,7 @@
     </div>
 
     <px-simple-horizontal-bar-chart bar-labels="values" legend-labels='["Level 1", "Level 2", "Level3", "Level4"]'
-        chart-data='[0,0,0,0]' id="bar-graph">
+        chart-data='[0,0,0,0]' id="bar-graph" colors='["#FF3740", "#FF834B", "#0080C5", "#8E8E8E"]'>
 
     </px-simple-horizontal-bar-chart>
 
@@ -134,6 +134,7 @@
         //For simulation change January
         document.getElementById('simJanuary').onclick = () => {
             console.log("Simulate January");
+            clearMap();
             simulateMonth(1);
             console.log(monthObj.length);
         }
@@ -141,6 +142,7 @@
         //For simulation for February
         document.getElementById('simFebruary').onclick = () => {
             console.log("Simulate February");
+            clearMap();
             simulateMonth(2);
             console.log(monthObj.length);
         }
@@ -148,6 +150,7 @@
         //For simulation for March
         document.getElementById('simMarch').onclick = () => {
             console.log("Simulate March");
+            clearMap();
             simulateMonth(3);
             console.log(monthObj.length);
         }
@@ -155,6 +158,7 @@
         //For simulation for April
         document.getElementById('simApril').onclick = () => {
             console.log("Simulate April");
+            clearMap();
             simulateMonth(4);
             console.log(monthObj.length);
         }
@@ -162,6 +166,7 @@
         //For simulation for May
         document.getElementById('simMay').onclick = () => {
             console.log("Simulate May");
+            clearMap();
             simulateMonth(5);
             console.log(monthObj.length);
         }
@@ -169,6 +174,7 @@
         //For simulation for June
         document.getElementById('simJune').onclick = () => {
             console.log("Simulate June");
+            clearMap();
             simulateMonth(6);
             console.log(monthObj.length);
         }
@@ -176,6 +182,7 @@
         //For simulation for July
         document.getElementById('simJuly').onclick = () => {
             console.log("Simulate July");
+            clearMap();
             simulateMonth(7);
             console.log(monthObj.length);
         }
@@ -183,6 +190,7 @@
         //For simulation for August
         document.getElementById('simAugust').onclick = () => {
             console.log("Simulate August");
+            clearMap();
             simulateMonth(8);
             console.log(monthObj.length);
         }
@@ -234,19 +242,6 @@
         }
 
 
-        // let incident_num = simObj[Number(counter)].A;
-        // let date_time = simObj[Number(counter)].B;
-        // let day = simObj[Number(counter)].C;
-        // let stno = simObj[Number(counter)].D;
-        // let street_name = simObj[Number(counter)].F;
-        // let street_type = simObj[Number(counter)].G;
-        // let full_address = simObj[Number(counter)].H;
-        // let call_type = simObj[Number(counter)].I;
-        // let disposition = simObj[Number(counter)].J;
-        // let beat = simObj[Number(counter)].K;
-        // var priority = simObj[Number(counter)].L;
-        // var latitude = simObj[Number(counter)].M;
-        // var longitude = simObj[Number(counter)].N;
 
         /********TESTING***************/
 
@@ -319,31 +314,39 @@
 
                 console.log("latitude: " + latitude);
                 console.log("longitude: " + longitude);
-                console.log("Date and TIme: " + date_time)
+                console.log("Date and TIme: " + date_time);
 
-                output.innerHTML += '<px-map-marker-static id="PoliceCall" style="display:none;" lat="' + latitude + '" lng="' + longitude + '" type="info">' +
-                    '<px-map-popup-data title="' + incident_num + '" data=\'{"Year":"' + date_time
-                    + '","Date":"' + date_time
-                    + '","Location":"' + full_address
-                    + '","Level of Emergency":"' + priority
-                    + '","Call Type":"' + call_type
-                    + '","CITY":"San diego"}\'>'
-                    + '</px-map-popup-data> </px-map-marker-static>';
 
 
                 switch (Number(priority)) { // Regulating the count to be higher/lower  
                     case 1:
                         priority1++;
+                        displayOutput("important");
                         break;
                     case 2:
                         priority2++;
+                        displayOutput("warning");
                         break;
                     case 3:
                         priority3++;
+                        displayOutput("info");
                         break;
                     case 4:
-                        priority4++;;
+                        priority4++;
+                        displayOutput("unknown");
                         break;
+                }
+
+                //Priority Function
+                function displayOutput(priorityColor) {
+                    output.innerHTML += '<px-map-marker-static id="PoliceCall" style="display:none;" lat="' + latitude + '" lng="' + longitude + '" type="' + priorityColor + '">' +
+                        '<px-map-popup-data title="' + incident_num + '" data=\'{"Year":"' + date_time
+                        + '","Date":"' + date_time
+                        + '","Location":"' + full_address
+                        + '","Level of Emergency":"' + priority
+                        + '","Call Type":"' + call_type
+                        + '","CITY":"San diego"}\'>'
+                        + '</px-map-popup-data> </px-map-marker-static>';
                 }
 
                 //Increments bar graph

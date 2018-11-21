@@ -1,0 +1,1226 @@
+[
+  {
+    "A": "Call_type",
+    "B": "Description"
+  },
+  {
+    "A": 10,
+    "B": "OUT OF SERV, SUBJTOCALL"
+  },
+  {
+    "A": "10-97",
+    "B": "ARRIVE ON SCENE"
+  },
+  {
+    "A": 1016,
+    "B": "PRISONER IN CUSTODY"
+  },
+  {
+    "A": "1016PT",
+    "B": "PTU (PRISONER TRANSPORT)"
+  },
+  {
+    "A": "1016QC",
+    "B": "SHOPLIFTER/QUICK CITE"
+  },
+  {
+    "A": "1016T",
+    "B": "BORDERPRISONERTRANSPORT"
+  },
+  {
+    "A": 1019,
+    "B": "RETURN TO STATION"
+  },
+  {
+    "A": 1021,
+    "B": "PHONE YOUR STATION"
+  },
+  {
+    "A": "1021H",
+    "B": "PHONE YOUR HOME"
+  },
+  {
+    "A": 1042,
+    "B": "SECURE, END OF SHIFT"
+  },
+  {
+    "A": 10851,
+    "B": "AUTO THEFT"
+  },
+  {
+    "A": "10851E",
+    "B": "EVAL-POSS UNREPORTED CAR THEFT"
+  },
+  {
+    "A": "10851R",
+    "B": "CAR THEFT REPORT"
+  },
+  {
+    "A": "10851RR",
+    "B": "CAR THEFT RECOVERY REPORT"
+  },
+  {
+    "A": 10852,
+    "B": "TAMPERING W/VEH IN PROGRESS"
+  },
+  {
+    "A": "10852A",
+    "B": "VEHICLE ALARM/AUDIBLE"
+  },
+  {
+    "A": "10852C",
+    "B": "VEHICLE CASER"
+  },
+  {
+    "A": "10852R",
+    "B": "TAMPERING W/VEH REPORT"
+  },
+  {
+    "A": 1087,
+    "B": "MEET OFFICER 10-10"
+  },
+  {
+    "A": "11-6",
+    "B": "DISCHARGING FIREARMS"
+  },
+  {
+    "A": "11-7",
+    "B": "PROWLER"
+  },
+  {
+    "A": "11-8",
+    "B": "PERSON DOWN"
+  },
+  {
+    "A": "1110M",
+    "B": "REPORT OF CRIME OCCD MEXICO"
+  },
+  {
+    "A": 1111,
+    "B": "CHECK THE AREA"
+  },
+  {
+    "A": 1115,
+    "B": "BALL GAME IN STREET(83 03MC)"
+  },
+  {
+    "A": 1130,
+    "B": "INCOMPLETE PHONE CALL"
+  },
+  {
+    "A": 1131,
+    "B": "CALLING FOR HELP"
+  },
+  {
+    "A": "1131A",
+    "B": "CALLING FOR HELP-PANIC ALARM"
+  },
+  {
+    "A": "1140OD",
+    "B": "AMBULANCE CALL, OVERDOSE"
+  },
+  {
+    "A": 1141,
+    "B": "AMBULANCE NEEDED"
+  },
+  {
+    "A": 1144,
+    "B": "CORONER'S CASE"
+  },
+  {
+    "A": 1146,
+    "B": "REPORT OF DEATH"
+  },
+  {
+    "A": 1147,
+    "B": "INJURED PERSON"
+  },
+  {
+    "A": 1148,
+    "B": "FURNISH TRANSPORTATION"
+  },
+  {
+    "A": 1149,
+    "B": "TRAFFIC STOP/NO LICENSE CK"
+  },
+  {
+    "A": 1150,
+    "B": "TRAFFIC STOP/WITHLICENSE"
+  },
+  {
+    "A": 1151,
+    "B": "PED STOP/FIELD INTERVIEW"
+  },
+  {
+    "A": 1153,
+    "B": "SECURITY CHECK"
+  },
+  {
+    "A": "1153HS",
+    "B": "SECRTY CK OF TERRORIST TARGET"
+  },
+  {
+    "A": 1155,
+    "B": "HAZARDOUS/CHEMICAL SPILL"
+  },
+  {
+    "A": 1160,
+    "B": "INVESTIGATE WATER LEAK"
+  },
+  {
+    "A": 1166,
+    "B": "SIGNALS OUT OF ORDER"
+  },
+  {
+    "A": 1171,
+    "B": "FIRE"
+  },
+  {
+    "A": 1180,
+    "B": "SERIOUS INJURY ACCIDENT"
+  },
+  {
+    "A": "1180CR",
+    "B": "SERIOUS INJ ACCIDENT-COST REC"
+  },
+  {
+    "A": 1181,
+    "B": "MINOR INJURY ACCIDENT"
+  },
+  {
+    "A": "1181CR",
+    "B": "MINOR INJURY ACC-COST REC"
+  },
+  {
+    "A": "1181R",
+    "B": "MINOR TRAFFICI NJURY, REPORT"
+  },
+  {
+    "A": 1182,
+    "B": "NON-INJURY ACCIDENT"
+  },
+  {
+    "A": "1182CR",
+    "B": "NON-INJURY ACCIDENT-COST REC"
+  },
+  {
+    "A": 1183,
+    "B": "NO DETAIL ACCIDENT"
+  },
+  {
+    "A": 1184,
+    "B": "TRAFFIC CONTROL"
+  },
+  {
+    "A": "1184CR",
+    "B": "TRAFFIC CONTROL-COST REC"
+  },
+  {
+    "A": 1185,
+    "B": "REQUEST FOR TOW TRUCK"
+  },
+  {
+    "A": 1186,
+    "B": "SPECIAL DETAIL"
+  },
+  {
+    "A": 1188,
+    "B": "ASSIST DISABLED MOTORIST"
+  },
+  {
+    "A": 136,
+    "B": "INTIMIDATION OF WITNESS"
+  },
+  {
+    "A": 146,
+    "B": "IMPERSONATING AN OFFICER"
+  },
+  {
+    "A": "146R",
+    "B": "IMPERSONATING AN OFFICER,RPT"
+  },
+  {
+    "A": 19,
+    "B": "RETURN TO STATION"
+  },
+  {
+    "A": 20001,
+    "B": "FELONY HIT&RUN"
+  },
+  {
+    "A": "20001CR",
+    "B": "FELONY HIT&RUN-COST REC"
+  },
+  {
+    "A": 20002,
+    "B": "MISD HIT/RUN"
+  },
+  {
+    "A": "20002CR",
+    "B": "MISD HIT/RUN-COST REC"
+  },
+  {
+    "A": "20002R",
+    "B": "HIT AND RUN REPORT"
+  },
+  {
+    "A": 207,
+    "B": "KIDNAPPING IN PROGRESS"
+  },
+  {
+    "A": "207R",
+    "B": "KIDNAPPING REPORT"
+  },
+  {
+    "A": 211,
+    "B": "ROBBERY"
+  },
+  {
+    "A": "211-SUSP",
+    "B": "211 SUSPECT THERE NOW"
+  },
+  {
+    "A": "211A",
+    "B": "ROBBERY ALARM"
+  },
+  {
+    "A": "211C",
+    "B": "ROBBERY CASER"
+  },
+  {
+    "A": "211ECHO",
+    "B": "ROBBERY-PRONET"
+  },
+  {
+    "A": "211R",
+    "B": "ROBBERY REPORT"
+  },
+  {
+    "A": "211SPEC",
+    "B": "ROBBERY-GPSD EVICE"
+  },
+  {
+    "A": 215,
+    "B": "CAR JACKING"
+  },
+  {
+    "A": "215R",
+    "B": "CARJACKING REPORT"
+  },
+  {
+    "A": 23103,
+    "B": "RECKLESS DRIVING"
+  },
+  {
+    "A": 23110,
+    "B": "THROWING OBJECTS AT OCC VEH"
+  },
+  {
+    "A": "23110R",
+    "B": "THROWING OBJECTS AT AN OCC VEH"
+  },
+  {
+    "A": 23152,
+    "B": "DWI"
+  },
+  {
+    "A": "23152CR",
+    "B": "DWI WITH COST RECOVERY"
+  },
+  {
+    "A": 242,
+    "B": "BATTERY"
+  },
+  {
+    "A": "242R",
+    "B": "BATTERY REPORT"
+  },
+  {
+    "A": 245,
+    "B": "ADW"
+  },
+  {
+    "A": "245-SUSP",
+    "B": "245 SUSPECT THERE NOW"
+  },
+  {
+    "A": "245CR",
+    "B": "ADW-COST RECOVERY"
+  },
+  {
+    "A": "245R",
+    "B": "ADW REPORT"
+  },
+  {
+    "A": 246,
+    "B": "FIRING AT OCCP'D HSE/VEH"
+  },
+  {
+    "A": "246R",
+    "B": "FIRING AT OCCP'D HSE/VEH 1110"
+  },
+  {
+    "A": 247,
+    "B": "FIRING AT UNOCCUPIED VEH/HSE"
+  },
+  {
+    "A": "247R",
+    "B": "FIRING AT UNOCCPD VEH/HSE 1110"
+  },
+  {
+    "A": 272,
+    "B": "CONTRIBUTING DELINQ MINOR"
+  },
+  {
+    "A": 278,
+    "B": "CHILD STEALING"
+  },
+  {
+    "A": "278R",
+    "B": "CHILD STEALING REPORT"
+  },
+  {
+    "A": 314,
+    "B": "INDECENT EXPOSURE"
+  },
+  {
+    "A": "314R",
+    "B": "INDECENT EXPOSURE REPORT"
+  },
+  {
+    "A": 330,
+    "B": "GAMBLING"
+  },
+  {
+    "A": 374,
+    "B": "LITTERING"
+  },
+  {
+    "A": "402B",
+    "B": "ABANDONED REFRIGERATOR"
+  },
+  {
+    "A": 415,
+    "B": "DISTURBING PEACE"
+  },
+  {
+    "A": "415CAPP",
+    "B": "DIST PEACE-CAPP HOUSE"
+  },
+  {
+    "A": "415CN",
+    "B": "CONSTRUCTION NOISE COMPLAINT"
+  },
+  {
+    "A": "415N",
+    "B": "DISTURBING PEACE NOISE ONLY"
+  },
+  {
+    "A": "415NCR",
+    "B": "DISTURB PEACE/NOISE-COST REC"
+  },
+  {
+    "A": "415PP",
+    "B": "PRESERVE THE PEACE"
+  },
+  {
+    "A": "415SHCR",
+    "B": "SOCIAL HOST CR (RADIO USE ONLY"
+  },
+  {
+    "A": "415TOW",
+    "B": "DISTURBING PEACE RE:TOWING"
+  },
+  {
+    "A": "415V",
+    "B": "DISTURBING PEACE W/VIOLENCE"
+  },
+  {
+    "A": "415W",
+    "B": "DIST PEACE UNCONCEALED WEAPON"
+  },
+  {
+    "A": 417,
+    "B": "THREATENING W/WEAPON"
+  },
+  {
+    "A": "417R",
+    "B": "THREATENING W/WEAPON REPORT"
+  },
+  {
+    "A": 422,
+    "B": "CRIMINAL THREATS"
+  },
+  {
+    "A": "422R",
+    "B": "CRIMINAL THREATS"
+  },
+  {
+    "A": 451,
+    "B": "ARSON IN PROGRESS"
+  },
+  {
+    "A": "451R",
+    "B": "ARSON REPORT"
+  },
+  {
+    "A": 459,
+    "B": "BURGLARY IN PROGRESS"
+  },
+  {
+    "A": "459-SUSP",
+    "B": "459 SUSPECT THERE NOW"
+  },
+  {
+    "A": "459A",
+    "B": "BURGLARY ALARM"
+  },
+  {
+    "A": "459C",
+    "B": "BURGLARY CASER"
+  },
+  {
+    "A": "459HP",
+    "B": "BURGLARY HOT PROWL"
+  },
+  {
+    "A": "459R",
+    "B": "BURGLARY REPORT"
+  },
+  {
+    "A": 470,
+    "B": "FORGERY IN PROGRESS"
+  },
+  {
+    "A": "470R",
+    "B": "FORGERY REPORT"
+  },
+  {
+    "A": "470RX",
+    "B": "FORGERY OF RX-SUSP THERE NOW"
+  },
+  {
+    "A": 487,
+    "B": "GRAND THEFT /$950+"
+  },
+  {
+    "A": "487R",
+    "B": "GRAND THEFT/REPORT $950+"
+  },
+  {
+    "A": 488,
+    "B": "PETTY THEFT /UNDER $950"
+  },
+  {
+    "A": "488R",
+    "B": "PETTY THEFT/UNDER $950"
+  },
+  {
+    "A": 496,
+    "B": "RECEIVE/SELL STOLEN PROP"
+  },
+  {
+    "A": "496R",
+    "B": "REC/SELL STOLEN PROP REPORT"
+  },
+  {
+    "A": 498,
+    "B": "THEFT OF UTILITIES IN PROGRESS"
+  },
+  {
+    "A": "498R",
+    "B": "THEFT OF UTILITIES REPORT"
+  },
+  {
+    "A": 502,
+    "B": "COMPUTER CRIMES"
+  },
+  {
+    "A": "508R",
+    "B": "EMBEZZLEMENT, REPORT"
+  },
+  {
+    "A": 5150,
+    "B": "MENTAL CASE"
+  },
+  {
+    "A": "5150V",
+    "B": "MENTAL CASE-VIOLENT OR URGENT"
+  },
+  {
+    "A": "518R",
+    "B": "EXTORTION, REPORT"
+  },
+  {
+    "A": 530,
+    "B": "FALSE USE OF ANOTHERS IDENTITY"
+  },
+  {
+    "A": 532,
+    "B": "FRAUD SOLICITATION/CHARITIES"
+  },
+  {
+    "A": 537,
+    "B": "DEFRAUDING INNKEEPER, INPROGR"
+  },
+  {
+    "A": "537R",
+    "B": "DEFRAUDING INNKEEPER REPORT"
+  },
+  {
+    "A": 586,
+    "B": "ILLEGAL PARKING"
+  },
+  {
+    "A": "586H",
+    "B": "ILLEGAL PARKING-HANDICAPPED"
+  },
+  {
+    "A": "586O",
+    "B": "ILLEGAL OVO PARKING"
+  },
+  {
+    "A": 594,
+    "B": "VANDALISM, INPROGRESS"
+  },
+  {
+    "A": "594GR",
+    "B": "GRAFFIT IVANDALISM REPORT"
+  },
+  {
+    "A": "594R",
+    "B": "VANDALISM, REPORT"
+  },
+  {
+    "A": "594VARDA",
+    "B": "VANDALISM,ALARM"
+  },
+  {
+    "A": 595,
+    "B": "RUNAWAY VEHICLE"
+  },
+  {
+    "A": 597,
+    "B": "CRUELTY TO ANIMALS"
+  },
+  {
+    "A": "597R",
+    "B": "CRUELTY TO ANIMALS, REPORT"
+  },
+  {
+    "A": 602,
+    "B": "TRESPASSING"
+  },
+  {
+    "A": "647B",
+    "B": "PROSTITUTION"
+  },
+  {
+    "A": "647F",
+    "B": "DRUNK - DRUGS/ALCOHOL"
+  },
+  {
+    "A": "653M",
+    "B": "THREATENING PHONE CALL, REPORT"
+  },
+  {
+    "A": 7,
+    "B": "OUT OF SERVICE"
+  },
+  {
+    "A": "72HR",
+    "B": "VEH VIOLATING 72HR PARKING RES"
+  },
+  {
+    "A": 911,
+    "B": "UNK EMERG,HANG UP/OPEN LINE"
+  },
+  {
+    "A": "911P",
+    "B": "UNK EMER,HANGUP/OPEN,PAYFONE"
+  },
+  {
+    "A": "ALERT2",
+    "B": "AIRPLANE PROBLEM"
+  },
+  {
+    "A": "ALERT3",
+    "B": "AIRPLANE CRASH"
+  },
+  {
+    "A": "ALERT4",
+    "B": "BOMB/HIJACK THREAT"
+  },
+  {
+    "A": "AMBER",
+    "B": "AMBER ALERT INFO"
+  },
+  {
+    "A": "ANIMAL",
+    "B": "VICIOUS ANIMAL"
+  },
+  {
+    "A": "APPT",
+    "B": "APPOINTMENT"
+  },
+  {
+    "A": "ASST",
+    "B": "ASSIST THE INVALID"
+  },
+  {
+    "A": "ATL",
+    "B": "ATTEMPT TO LOCATE A/U"
+  },
+  {
+    "A": "AU-MP",
+    "B": "MISSING PERSON ALL UNITS INFO"
+  },
+  {
+    "A": "AU1",
+    "B": "ALL UNITS INFORMATION-PRI 1"
+  },
+  {
+    "A": "AU10851",
+    "B": "AUTO THEFT ALL UNITS INFO"
+  },
+  {
+    "A": "AU1171",
+    "B": "ALL UNITS FIRE INFO-PRI 1"
+  },
+  {
+    "A": "AU187",
+    "B": "MURDER-ALL UNITS INFORMATION"
+  },
+  {
+    "A": "AU2",
+    "B": "ALL UNITS INFORMATION-PRI 2"
+  },
+  {
+    "A": "AU211",
+    "B": "ROBBERY-ALL UNITS INFORMATION"
+  },
+  {
+    "A": "AU215",
+    "B": "CAR JACK-ALL UNITS INFORMATION"
+  },
+  {
+    "A": "AU23103",
+    "B": "RECKLESS DRIVING-ALL UNITS"
+  },
+  {
+    "A": "AU23152",
+    "B": "DWI-ALL UNITS INFORMATION"
+  },
+  {
+    "A": "AU245",
+    "B": "ADW-ALL UNITS INFORMATION"
+  },
+  {
+    "A": "AUHATE",
+    "B": "HATE INCIDENT ALL UNITS INF"
+  },
+  {
+    "A": "BIO",
+    "B": "BIOHAZARD-DESK CALL"
+  },
+  {
+    "A": "BIOALARM",
+    "B": "((ANTHRAX ALARM)))"
+  },
+  {
+    "A": "BLOOD",
+    "B": "BLOOD RUN"
+  },
+  {
+    "A": "BLUE",
+    "B": "TAXI OR BUS NEEDS HELP"
+  },
+  {
+    "A": "BOL",
+    "B": "AU INFO/USED BY DESK OR RADIO"
+  },
+  {
+    "A": "BOMB",
+    "B": "BOMB THREAT, DESK CALL"
+  },
+  {
+    "A": "BOMB-S",
+    "B": "BOMB THREAT,DESK CAL L(SCHOOL)"
+  },
+  {
+    "A": "C10",
+    "B": "SWAT STAGING"
+  },
+  {
+    "A": "C100",
+    "B": "ATTACK ON PD FACILITY"
+  },
+  {
+    "A": "C11",
+    "B": "SWAT STAGING"
+  },
+  {
+    "A": "C11CR",
+    "B": "SWAT STAGING COST RECOVERY"
+  },
+  {
+    "A": "C12",
+    "B": "SWAT EMERGENCY RESPONSE"
+  },
+  {
+    "A": "C5",
+    "B": "STAKEOUT"
+  },
+  {
+    "A": "C6",
+    "B": "STAYOUT OF AREA/NO RADIO TRANS"
+  },
+  {
+    "A": "C7",
+    "B": "LUNCH"
+  },
+  {
+    "A": "CAN",
+    "B": "1186 STATE GRANT ACTIVITY"
+  },
+  {
+    "A": "CC",
+    "B": "CITIZEN CONTACT"
+  },
+  {
+    "A": "CCCC",
+    "B": "CHRONIC COMM CALLER CONTROL"
+  },
+  {
+    "A": "CCF",
+    "B": "CITIZEN'S COMPLAINT INVESTIGAT"
+  },
+  {
+    "A": "CCF-EVNT",
+    "B": "CITIZEN'S COMPLAINT SPEC EVENT"
+  },
+  {
+    "A": "CCF-PBBP",
+    "B": "CCF-PB BLOCK PARTY"
+  },
+  {
+    "A": "CCF-RRM",
+    "B": "CCF-ROCK N ROLL MARATHON"
+  },
+  {
+    "A": "CCW",
+    "B": "CARRYING CONCEALED WEAPON"
+  },
+  {
+    "A": "CHANGE",
+    "B": "CHANGE CALL"
+  },
+  {
+    "A": "CITE",
+    "B": "ISSUE CITATION"
+  },
+  {
+    "A": "CODE-10",
+    "B": "SWAT STAGING (AKA C10)"
+  },
+  {
+    "A": "CODE-100",
+    "B": "ATTACK ON PD FAC (AKAC100)"
+  },
+  {
+    "A": "CODE-11",
+    "B": "SWAT STAGING (AKAC11)"
+  },
+  {
+    "A": "CODE-12",
+    "B": "SWAT EMERGENCY RESPONSE"
+  },
+  {
+    "A": "CODE-5",
+    "B": "STAKEOUT (AKA C5)"
+  },
+  {
+    "A": "CODE-6",
+    "B": "STAYOUT OF AREA (AKAC6)"
+  },
+  {
+    "A": "CODE10",
+    "B": "SWAT STAGING (AKA C10)"
+  },
+  {
+    "A": "CODE100",
+    "B": "ATTACK ON PD FAC (AKAC 100)"
+  },
+  {
+    "A": "CODE11",
+    "B": "SWAT STAGING (AKA C11)"
+  },
+  {
+    "A": "CODE12",
+    "B": "SWAT EMERGENCY RESPONSE"
+  },
+  {
+    "A": "CODE5",
+    "B": "STAKEOUT (AKA C5)"
+  },
+  {
+    "A": "CODE6",
+    "B": "STAYOUT OF AREA (AKA C6)"
+  },
+  {
+    "A": "COURT",
+    "B": "1186 COURT"
+  },
+  {
+    "A": "CW",
+    "B": "CHECK THE WELFARE"
+  },
+  {
+    "A": "DC",
+    "B": "DESK CALL"
+  },
+  {
+    "A": "DC-S",
+    "B": "DESK CALL (SCHOOL)"
+  },
+  {
+    "A": "DEMO",
+    "B": "DEMONSTRATION CALLS"
+  },
+  {
+    "A": "DRAGNET",
+    "B": "ILLEGAL STREET RACING"
+  },
+  {
+    "A": "DRONE",
+    "B": "ANY CALL RELATED TO A DRONE"
+  },
+  {
+    "A": "DRUN",
+    "B": "HOMELAND SECURITY CHECKS"
+  },
+  {
+    "A": "EJECT",
+    "B": "EJECTED FROM AN EVENT"
+  },
+  {
+    "A": "ESCAPE",
+    "B": "ESCAPE/ESCAPEE"
+  },
+  {
+    "A": "EVAC",
+    "B": "EVACUATE CITIZENS"
+  },
+  {
+    "A": "EVID",
+    "B": "PICK UP EVIDENCE"
+  },
+  {
+    "A": "EXPLO",
+    "B": "EXPLOSION"
+  },
+  {
+    "A": "FC",
+    "B": "FRONT COUNTER CLOSURES"
+  },
+  {
+    "A": "FD",
+    "B": "FLAG DOWN/FIELD INITIATED"
+  },
+  {
+    "A": "FIREHZRD",
+    "B": "FIREWORK HAZARD"
+  },
+  {
+    "A": "FIREWORK",
+    "B": "ALL UNITS INFORMATION"
+  },
+  {
+    "A": "FJ",
+    "B": "FOUND JUVENILE"
+  },
+  {
+    "A": "FOOT",
+    "B": "FOOT PATROL/FIELD INITIATED"
+  },
+  {
+    "A": "FOUND",
+    "B": "FOUND PROPERTY"
+  },
+  {
+    "A": "FP",
+    "B": "FOOT PURSUIT (AKA SPURS)"
+  },
+  {
+    "A": "FS",
+    "B": "FOUND SENILE"
+  },
+  {
+    "A": "FU",
+    "B": "FOLLOW-UP BY FIELD UNIT"
+  },
+  {
+    "A": "G&E",
+    "B": "SECURITY CHECK-POWER SYSTEM"
+  },
+  {
+    "A": "GPSPAL",
+    "B": "GPS PAROLE VIOLATION"
+  },
+  {
+    "A": "HATEINV",
+    "B": "HATE CRIME INVESTIGATION"
+  },
+  {
+    "A": "HOOD",
+    "B": "HOOD A PARKING METER"
+  },
+  {
+    "A": "HZRD",
+    "B": "HAZARDOUS CONDITION"
+  },
+  {
+    "A": "INFO",
+    "B": "INFORMATION FOR DISPATCHERS"
+  },
+  {
+    "A": "INFOCHP",
+    "B": "INFORMATION FOR CHP"
+  },
+  {
+    "A": "INFOT",
+    "B": "INFO ON TRAFFIC,HIT&RUN"
+  },
+  {
+    "A": "INFOX",
+    "B": "XTRA PATROL INFO FOR FIELD"
+  },
+  {
+    "A": "JST",
+    "B": "JUVENILE SERVICE TEAM HOTLINE"
+  },
+  {
+    "A": "LASER",
+    "B": "LASER SCOPE-DRAWING/EXHIBITING"
+  },
+  {
+    "A": "LOGON",
+    "B": "LOGON (DO NOT DELETE IT)"
+  },
+  {
+    "A": "LOJACK",
+    "B": "STOLEN VEH-LOJACK"
+  },
+  {
+    "A": "LOST",
+    "B": "REPORT OF LOST PROPERTY/PLATE"
+  },
+  {
+    "A": "LUNCH",
+    "B": "C7 10-10"
+  },
+  {
+    "A": "MCTSTP",
+    "B": "TRAFFIC STOP,FOR TMPOUT"
+  },
+  {
+    "A": "MEETING",
+    "B": "IN A MEETING (AKA MTG)"
+  },
+  {
+    "A": "MEXICO",
+    "B": "LIAISON UNITS VISITING MEXICO"
+  },
+  {
+    "A": "MFF",
+    "B": "MOBILE FIELD FORCE ACTIVATION"
+  },
+  {
+    "A": "MJ",
+    "B": "MISSING JUV OF TENDER YEARS"
+  },
+  {
+    "A": "MP",
+    "B": "MISSING PERSON, REPORT EVAL"
+  },
+  {
+    "A": "MS",
+    "B": "MISSING SENILE"
+  },
+  {
+    "A": "MTG",
+    "B": "IN A MEETING/OUT OF SERVICE"
+  },
+  {
+    "A": "MUTAID",
+    "B": "INTERAGENCY MUTUAL AID"
+  },
+  {
+    "A": "NARC",
+    "B": "NARCOTICS ACTIVITY"
+  },
+  {
+    "A": "OVO",
+    "B": "OVERSIZED VEHICLE ORDINANCE"
+  },
+  {
+    "A": "PAPER",
+    "B": "FINISH 1110/FIELD INITIATED"
+  },
+  {
+    "A": "PARTY",
+    "B": "LOUD PARTY"
+  },
+  {
+    "A": "PARTYCR",
+    "B": "LOUD PARTY-COST RECOVERY"
+  },
+  {
+    "A": "PHONE",
+    "B": "SECURITY CHECK-PHONE SYSTEM"
+  },
+  {
+    "A": "POP",
+    "B": "PROBLEM ORIENTED POLICING"
+  },
+  {
+    "A": "PORT",
+    "B": "BORDER/PORT RUNNER A/U"
+  },
+  {
+    "A": "PRISPC",
+    "B": "PRSIONER PROCESSING CTR"
+  },
+  {
+    "A": "PRT",
+    "B": "PRT ASSIST"
+  },
+  {
+    "A": "PSI",
+    "B": "PUBLIC SERVICE INQUIRY"
+  },
+  {
+    "A": "REPORT",
+    "B": "CRIME CASE NUMBER REQUEST"
+  },
+  {
+    "A": "RESCUE",
+    "B": "RESCUE CITIZENS"
+  },
+  {
+    "A": "RJ",
+    "B": "RUNAWAY JUVENILE, REPORT"
+  },
+  {
+    "A": "ROUTE",
+    "B": "ROUTE SLIP (FLD INVESTIGATION)"
+  },
+  {
+    "A": "ROUTINE",
+    "B": "OUT OF SERVICE ACTIVITY"
+  },
+  {
+    "A": "RRM",
+    "B": "ROCK N ROLL MARATHON"
+  },
+  {
+    "A": "RRM-1185",
+    "B": "ROCK N ROLL 1185"
+  },
+  {
+    "A": "RRM-PSI",
+    "B": "ROCK N ROLL PSI"
+  },
+  {
+    "A": "RRM-TOWS",
+    "B": "VEHICLES TOWED DUE TO RRM"
+  },
+  {
+    "A": "SCALP",
+    "B": "TICKET SCALPER"
+  },
+  {
+    "A": "SCHOOL",
+    "B": "SCHOOL DETAIL"
+  },
+  {
+    "A": "SELENF",
+    "B": "SELECTIVE ENFORCEMENT"
+  },
+  {
+    "A": "SHOPS",
+    "B": "INFORMATION FOR SHOPS"
+  },
+  {
+    "A": "SIG",
+    "B": "SIGALERT"
+  },
+  {
+    "A": "SKATE",
+    "B": "SKATEBOARDERS"
+  },
+  {
+    "A": "SLEEPER",
+    "B": "SLEEPER"
+  },
+  {
+    "A": "SP",
+    "B": "SUBJECT PURSUIT (AKASPURS)"
+  },
+  {
+    "A": "SPAN",
+    "B": "BILINGUAL TALLY INFO"
+  },
+  {
+    "A": "SPURS",
+    "B": "FOOT PURSUIT"
+  },
+  {
+    "A": "STOP",
+    "B": "TRAFFIC STOP,FOR TMPOUT"
+  },
+  {
+    "A": "STREET",
+    "B": "STREET INFORMATION"
+  },
+  {
+    "A": "T",
+    "B": "TRAFFIC STOP"
+  },
+  {
+    "A": "TAGGER",
+    "B": "TAGGER VANDALISM, IN PROGRESS"
+  },
+  {
+    "A": "TARASOFF",
+    "B": "TARASOFF REPORT"
+  },
+  {
+    "A": "TLO",
+    "B": "TERRORISM LIAISON OFFICER"
+  },
+  {
+    "A": "TP",
+    "B": "TRAFFIC PURSUIT (AKA TPURS)"
+  },
+  {
+    "A": "TPURS",
+    "B": "TRAFFIC PURSUIT"
+  },
+  {
+    "A": "TPURSCR",
+    "B": "TRAFFIC PURSUIT-COST REC"
+  },
+  {
+    "A": "TRO",
+    "B": "TRO VIOLATION, REPORT"
+  },
+  {
+    "A": "VARDA",
+    "B": "VARDA ALARM"
+  },
+  {
+    "A": "WARRANT",
+    "B": "WARRANT"
+  }
+]
