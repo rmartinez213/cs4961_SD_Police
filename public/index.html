@@ -238,8 +238,26 @@
                 return (val.B.substring(0, 1) === month.toString())
             });
 
+            monthObj.sort(function (a, b) {
+                return new Date(a.B) - new Date(b.B);
+            });
+
             simulate(monthObj);
         }
+
+
+        /*******************/
+        /**** Clear Map ****/
+        /*******************/
+
+        function clearMap() {
+            output.innerHTML = "";
+        }
+
+        /**********************/
+        /**** Sort by date ****/
+        /**********************/
+
 
 
 
@@ -265,9 +283,6 @@
 
         }
 
-        function clearMap() {
-            output.innerHTML = "";
-        }
 
         /***************************************/
         /**** Function that simulate months ****/
@@ -339,7 +354,7 @@
 
                 //Priority Function
                 function displayOutput(priorityColor) {
-                    output.innerHTML += '<px-map-marker-static id="PoliceCall" style="display:none;" lat="' + latitude + '" lng="' + longitude + '" type="' + priorityColor + '">' +
+                    output.innerHTML += '<px-map-marker-static id="PoliceCall" class="marker" style="display:none;" lat="' + latitude + '" lng="' + longitude + '" type="' + priorityColor + '">' +
                         '<px-map-popup-data title="' + incident_num + '" data=\'{"Year":"' + date_time
                         + '","Date":"' + date_time
                         + '","Location":"' + full_address
