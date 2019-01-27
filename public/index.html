@@ -1,0 +1,627 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+    <title>Police Data</title>
+    <link rel="stylesheet" type="text/css" href="keen-dashboards.css" />
+    <link rel="stylesheet" type="text/css" href="connected-devices.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+    <style>
+
+        .body {
+            overflow: hidden;
+        }
+
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: inline;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: inline;
+            position: absolute;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+
+        .marker {
+            opacity: .33;
+        }
+    </style>
+
+    <!--Bootstrap components link-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+<body class="body">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <base link href="https://polygit.org/px-*+PredixDev+*/webcomponentsjs+v1.0.22/polymer+v2.3.1/components/">
+    <script src="webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="polymer/polymer.html" />
+    <link rel="import" href="px-theme/px-theme-styles.html" />
+    <link rel="import" href="px-map-marker-group/px-map-marker-group.html" />
+    <link rel="import" href="px-map/px-map.html" />
+    <link rel="import" href="px-map/px-map-tile-layer.html" />
+    <link rel="import" href="px-map/px-map-marker-group.html" />
+    <link rel="import" href="px-d3-imports/px-polygit-imports-d3.html" />
+    <link rel="import" href="px-map/px-map-popup-data.html" />
+    <link rel="import" href="px-map/px-map-marker-static.html" />
+    <link rel="import" href="px-branding-bar/px-branding-bar.html" />
+    <link rel="import" href="px-simple-horizontal-bar-chart/px-simple-horizontal-bar-chart.html" />
+    <link rel="import" href="px-map/px-map-control-zoom.html" />
+    <link rel="import" href="px-map-control-zoom/px-map-control-zoom.html" />
+    <link rel="import" href="px-key-value-pair/px-key-value-pair.html" />
+    <link rel="import" href="px-dropdown/px-dropdown.html" />
+    <link rel="import" href="px-gauge/px-gauge.html" />
+    <link rel="import" href="px-percent-circle/px-percent-circle.html" />
+    <link rel="import" href="px-data-grid/px-data-grid.html" />
+    <link rel="import" href="px-kpi-list/px-kpi-list.html" />
+    <link rel="import" href="px-vis/px-polygit-imports-vis.html" />
+    <link rel="import" href="px-datetime-common/px-polygit-imports-datetime.html" />
+    <link rel="import" href="px-kpi/px-kpi-list.html" />
+    <link rel="import" href="px-tile/px-tile.html" />
+    <link rel="import" href="px-icon/px-icon.html" />
+    <link rel="import" href="px-icon-set/px-icon-set.html" />
+    <link rel="import" href="px-icon-set/px-icon.html" />
+    <link rel="import" href="px-popover/px-popover.html" />
+
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <custom-style>
+        <style include="px-theme-styles" is="custom-style"></style>
+    </custom-style>
+    <div class="keen-dashboard" style="padding-top: 80px;">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <center> <h1 style="color:white">Bad Area Detector</h1> </center>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-left"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="chart-wrapper">
+                        <div class="chart-title" style="text-align:center;">
+                            <h3><i class="glyphicon glyphicon-search"></i> Crime Info</h3>
+                        </div>
+
+                        <div class="chart-stage" id="CrimeInfo">
+                            <px-kpi-list label=" 32334r3" values='[{"label":"Location","value":"N/A","uom":""},{"label":"Priority","value":"N/A"},{"label":"Date","value":"N/A","uom":""},{"label":"Call type","value":"N/A","uom":""},{"label":"Crime in the Area","value":"N/A"}]'></px-kpi-list>
+
+
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <div class="tabbable tabs-left">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-xs-9">
+                                    <div class="tab-content">
+
+                                        <div class="tab-pane active" id="visitors"></div>
+                                        <div class="tab-pane" id="browser"></div>
+                                        <div class="tab-pane" id="geography"></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="chart-wrapper" style="height:430px">
+                        <div class="chart-title" style="text-align:center;">
+                            <h3><i class="glyphicon glyphicon-alert"></i> Major-Crimes</h3>
+                        </div>
+                        <div class="chart-stage">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="chart-title knob-title">
+                                        Homicides
+                                    </div>
+                                    <div class="chart-stage">
+                                        <div style="width:120px; align-items:center;" id="Circle1"> <px-percent-circle val="0" max="100" thickness="20"></px-percent-circle> </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="chart-title knob-title">
+                                        Stolen Cars
+                                    </div>
+                                    <div class="chart-stage">
+                                        <div style="width:120px" id="Circle2"> <px-percent-circle val="0" max="100" thickness="20"></px-percent-circle></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="chart-title knob-title">
+                                        Violence
+                                    </div>
+                                    <div class="chart-stage">
+                                        <div style="width:120px" id="Circle3"> <px-percent-circle val="0" max="100" thickness="20"></px-percent-circle></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="chart-title knob-title">
+                                        Drugs
+                                    </div>
+                                    <div class="chart-stage">
+                                        <div style="width:120px" id="Circle4"> <px-percent-circle val="0" max="100" thickness="20"></px-percent-circle></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="chart-wrapper">
+                        <div class="chart-title" style="text-align:center;">
+                            <h3><i class="glyphicon glyphicon-earphone"></i> Priority Call Stats</h3>
+                        </div>
+                        <div class="chart-stage">
+                            <px-simple-horizontal-bar-chart bar-labels="values" legend-labels='["Level 1", "Level 2", "Level3", "Level4"]' chart-data='[0,0,0,0]' id="bar-graph">
+                            </px-simple-horizontal-bar-chart>
+
+                            <h1>TOTAL CALLS</h1>
+                            <div id="output2" style="height:200px; width: 150px; ">
+                            </div>
+
+                        </div>
+                        <div class="chart-notes">
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="col-sm-6" id="mapwrap" style="height:500px;">
+                    <div class="chart-wrapper">
+                        <div class="chart-title" style="text-align:center;">
+                            <h3> <i class="glyphicon glyphicon-map-marker"></i> MAP</h3>
+                        </div>
+                        <div class="chart-stage">
+                            <div style="height:242px; width:895px; display:flex;">
+                                <px-map zoom="10" flex-to-size lat="32.772404" lng="-117.029327">
+                                    <px-map-control-zoom position="topright"></px-map-control-zoom>
+                                    <div id="output">
+                                    </div>
+                                    <px-map-tile-layer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'>
+                                    </px-map-tile-layer>
+                                </px-map>
+                            </div>
+
+                            <div class="chart-notes">
+                                <div class="dropdown">
+                                    <button class="dropbtn"><i class="glyphicon glyphicon-cd"></i> Simulations</button>
+                                    <div class="dropdown-content">
+                                        <button id='simClear'>clear simulation</button>
+                                        <button id='button'>simulate all data</button>
+                                    </div>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="dropbtn"><i class="glyphicon glyphicon-hourglass"></i>Refresh rates</button>
+                                    <div class="dropdown-content">
+                                        <!-- Buttons for changing the refresh rate -->
+                                        <button id='refreshRate1'>Refresh 1</button>
+                                        <button id='refreshRate5'>Refresh 5</button>
+                                        <button id='refreshRate10'>Refresh 10</button>
+                                    </div>
+                                </div>
+
+                                <div class="dropdown">
+                                    <button class="dropbtn"><i class="glyphicon glyphicon-calendar"></i> Months</button>
+                                    <div class="dropdown-content">
+                                        <button id='simJanuary'>January</button>
+                                        <button id='simFebruary'>February</button>
+                                        <button id='simMarch'>March</button>
+                                        <button id='simApril'>April</button>
+                                        <button id='simMay'>May</button>
+                                        <button id='simJune'>June</button>
+                                        <button id='simJuly'>July</button>
+                                        <button id='simAugust'>August</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+<script>
+    var socketObject;
+    var monthObj;
+    var timer;
+    var refreshRate = 5000;
+
+
+    //Create a connection
+    var socket = io.connect('http://localhost:4000');
+    //Pass the data from the WebSocket to a variable
+    socket.on('simulated-data', function (data) {
+        socketObject = data;
+        console.log("Ready for simulation.");
+    });
+    //For simulation change time
+    document.getElementById('button').onclick = () => {
+        simulate(socketObject);
+    }
+
+    /***************************************/
+    /********* Change Refresh Rate *********/
+    /***************************************/
+    document.getElementById('refreshRate1').onclick = () => {
+        refreshRate = 1000;
+        console.log("Refresh rate is now 1...");
+    }
+    document.getElementById('refreshRate5').onclick = () => {
+        refreshRate = 5000;
+        console.log("Refresh rate is now 5...");
+    }
+    document.getElementById('refreshRate10').onclick = () => {
+        refreshRate = 10000;
+        console.log("Refresh rate is now 10...");
+    }
+
+    /********************************/
+    /******* Changing Simulation ****/
+    /********************************/
+    //For simulation change January
+    document.getElementById('simJanuary').onclick = () => {
+        console.log("Simulate January");
+        clearMap();
+        simulateMonth(1);
+        console.log(monthObj.length);
+    }
+    //For simulation for February
+    document.getElementById('simFebruary').onclick = () => {
+        console.log("Simulate February");
+        clearMap();
+        simulateMonth(2);
+        console.log(monthObj.length);
+    }
+    //For simulation for March
+    document.getElementById('simMarch').onclick = () => {
+        console.log("Simulate March");
+        clearMap();
+        simulateMonth(3);
+        console.log(monthObj.length);
+    }
+    //For simulation for April
+    document.getElementById('simApril').onclick = () => {
+        console.log("Simulate April");
+        clearMap();
+        simulateMonth(4);
+        console.log(monthObj.length);
+    }
+    //For simulation for May
+    document.getElementById('simMay').onclick = () => {
+        console.log("Simulate May");
+        clearMap();
+        simulateMonth(5);
+        console.log(monthObj.length);
+    }
+    //For simulation for June
+    document.getElementById('simJune').onclick = () => {
+        console.log("Simulate June");
+        clearMap();
+        simulateMonth(6);
+        console.log(monthObj.length);
+    }
+    //For simulation for July
+    document.getElementById('simJuly').onclick = () => {
+        console.log("Simulate July");
+        clearMap();
+        simulateMonth(7);
+        console.log(monthObj.length);
+    }
+    //For simulation for August
+    document.getElementById('simAugust').onclick = () => {
+        console.log("Simulate August");
+        clearMap();
+        simulateMonth(8);
+        console.log(monthObj.length);
+    }
+    //DISPLAY ALL
+    document.getElementById('simAll').onclick = () => {
+        displayAll(socketObject);
+    }
+
+    /***************************************/
+    /************** Clear Map **************/
+    /***************************************/
+    document.getElementById('simClear').onclick = () => {
+        clearMap();
+        console.log("Clearing Map...");
+    }
+    /***************************************/
+    /**** Function that simulate months ****/
+    /***************************************/
+    function simulateMonth(month) {
+        monthObj = socketObject.filter(function (val) {
+            if (val.B.substring(0, 2) === "12" || val.L === "")
+                return null;
+            else
+                return (val.B.substring(0, 1) === month.toString())
+        });
+        monthObj.sort(function (a, b) {
+            return new Date(a.B) - new Date(b.B);
+        });
+        simulate(monthObj);
+    }
+    /*******************/
+    /**** Clear Map ****/
+    /*******************/
+    function clearMap() {
+        output.innerHTML = "";
+    }
+    /**********************/
+    /**** Sort by date ****/
+    /**********************/
+    /********TESTING***************/
+    function displayAll(socketObject) {
+        for (var i = 2; i < 100; i++) {
+            console.log(socketObject[i].M);
+            output.innerHTML += '<px-map-marker-static id="PoliceCall" style="display:none;" lat="' + socketObject[i].M + '" lng="' + socketObject[i].N + '" type="info">' +
+                '<px-map-popup-data title="' + socketObject[i].A + '" data=\'{"Year":"' + socketObject[i].B
+                + '","Date":"' + socketObject[i].B
+                + '","Location":"' + socketObject[i].H
+                + '","Level of Emergency":"' + socketObject[i].L
+                + '","Call Type":"' + socketObject[i].I
+                + '","CITY":"San diego"}\'>'
+                + '</px-map-popup-data> </px-map-marker-static>';
+        }
+    }
+    /***************************************/
+    /**** Function that simulate months ****/
+    /***************************************/
+    function simulate(simObj) {
+        var calls_this_year = 0;
+        var priority1 = 0; //id 1
+        var priority2 = 0 // id 2
+        var priority3 = 0 //id 3
+        var priority4 = 0 //id 4
+        var circle1Count = 0; //For percentile circle
+        var circle2Count = 0;
+        var circle3Count = 0;
+        var circle4Count = 0;
+        var circleTotal = 0; //For percentile circle total
+        var counter = 2;
+        if (timer) {
+            console.log("plz clear");
+            clearTimeout(timer);
+            timer = 0;
+        }
+        startSimulation(simObj);
+        function startSimulation(simObj) {
+            //All values of each json object
+            let incident_num = simObj[Number(counter)].A;
+            let date_time = simObj[Number(counter)].B;
+            let day = simObj[Number(counter)].C;
+            let stno = simObj[Number(counter)].D;
+            let street_name = simObj[Number(counter)].F;
+            let street_type = simObj[Number(counter)].G;
+            let full_address = simObj[Number(counter)].H;
+            let call_type = simObj[Number(counter)].I;
+            let disposition = simObj[Number(counter)].J;
+            let beat = simObj[Number(counter)].K;
+            var priority = simObj[Number(counter)].L;
+            var latitude = simObj[Number(counter)].M;
+            var longitude = simObj[Number(counter)].N;
+            console.log("latitude: " + latitude);
+            console.log("longitude: " + longitude);
+            console.log("Date and Time: " + date_time);
+            console.log("Priority: " + priority)
+            switch (Number(priority)) { // Regulating the count to be higher/lower
+                case 1:
+                    priority1++;
+                    displayOutput("important");
+                    circle1Count++;
+                    break;
+                case 2:
+                    priority2++;
+                    displayOutput("warning");
+                    circle2Count++;
+                    break;
+                case 3:
+                    priority3++;
+                    displayOutput("info");
+                    circle3Count++;
+                    break;
+                case 4:
+                    priority4++;
+                    displayOutput("unknown");
+                    circle4Count++;
+                    break;
+            }
+
+            //Crime info table update
+            CrimeInfo.innerHTML = '<px-kpi-list label = "' + incident_num + '" values = \'[{ "label": "Location", "value": "' + stno + " " + street_name + " " + street_type + '", "uom": "" }, { "label": "Priority", "value": "' + priority + '" }, { "label": "Date", "value": "' + date_time + '", "uom": "" }, { "label": "Call type", "value": "' + call_type + '", "uom": "" }, { "label": "Crime in the Area", "value": "high" }]\'></px-kpi-list>';
+
+
+            //Increment the total of the circle count due to iteration of the "Next Point"
+            circleTotal++;
+            //Calls the function that updates the percentile circle
+            percentileCircleCount(circle1Count, circle2Count, circle3Count, circle4Count, circleTotal);
+
+
+
+            //Function that solves small number difference for percentile circle such as underestimating and overestimating results
+            function percentileCircleCount(circle1, circle2, circle3, circle4, circleTot) {
+
+
+                console.log((circle1Count / circleTotal) * 100);
+                console.log((circle2Count / circleTotal) * 100);
+                console.log((circle3Count / circleTotal) * 100);
+                console.log((circle4Count / circleTotal) * 100);
+
+                var CountAdd1 = (circle1Count / circleTotal) * 100;
+                var CountAdd2 = (circle2Count / circleTotal) * 100;
+                var CountAdd3 = (circle3Count / circleTotal) * 100;
+                var CountAdd4 = (circle4Count / circleTotal) * 100;
+
+
+
+                //!= .5 two different numbers 
+                // 1&2
+                if ((CountAdd1 % 1 == CountAdd2 % 1) && CountAdd1 % 1 != 0 && CountAdd2 % 1 != 0) {
+                    console.log("Both Circle 1 and Circle 2 have the same decimal and do not add to 100")
+                    CountAdd3 = (CountAdd3 + 1);
+                    CountAdd4 = Math.round(CountAdd4);
+                }
+                //2&3
+                else if ((CountAdd2 % 1 == CountAdd3 % 1) && CountAdd2 % 1 != 0 && CountAdd3 % 1 != 0) {
+                    console.log("Both Circle2 and Circle3 have the same decimal and do not add to 100")
+                    CountAdd1 = (CountAdd1 + 1);
+                    CountAdd4 = Math.round(CountAdd4);
+                }
+                else if ((CountAdd1 % 1 == CountAdd3 % 1) && CountAdd1 % 1 != 0 && CountAdd3 % 1 != 0) {
+                    console.log("Both Circle1 and Circle3 have the same decimal and do not add to 100")
+                    CountAdd2 = (CountAdd2 + 1);
+                    CountAdd4 = Math.round(CountAdd4);
+                }
+
+                else {
+
+                    //Can only round 2 values up, otherwise total of percentge circle will be 101
+                    if (CountAdd1 % 1 > .5 && CountAdd2 % 1 > .5 && CountAdd3 % 1 > .5) {
+
+                        console.log("All are greater than .5");
+                        console.log("Lowest minimum value: " + Math.min(CountAdd1 % 1, CountAdd2 % 1, CountAdd3 % 1));
+                        var minValue = Math.min(CountAdd1 % 1, CountAdd2 % 1, CountAdd3 % 1);
+
+                        if (CountAdd1 % 1 == minValue) {
+                            CountAdd1 = Math.floor(CountAdd1);
+                            CountAdd2 = Math.round(CountAdd2);
+                            CountAdd3 = Math.round(CountAdd3);
+                            CountAdd4 = Math.round(CountAdd4);
+                        }
+                        else if (CountAdd2 % 1 == minValue) {
+                            CountAdd1 = Math.round(CountAdd1);
+                            CountAdd2 = Math.floor(CountAdd2);
+                            CountAdd3 = Math.round(CountAdd3);
+                            CountAdd4 = Math.round(CountAdd4);
+                        }
+                        else if (CountAdd3 % 1 == minValue) {
+                            CountAdd1 = Math.round(CountAdd1);
+                            CountAdd2 = Math.round(CountAdd2);
+                            CountAdd3 = Math.floor(CountAdd3);
+                            CountAdd4 = Math.round(CountAdd4);
+                        }
+                    }
+
+                    else {
+                        console.log("Round Everything")
+                        CountAdd1 = Math.round(CountAdd1);
+                        CountAdd2 = Math.round(CountAdd2);
+                        CountAdd3 = Math.round(CountAdd3);
+                        CountAdd4 = Math.round(CountAdd4);
+                    }
+                }
+
+                Circle1.innerHTML = '<px-percent-circle val="' + CountAdd1 + '" max="100" thickness="20"></px-percent-circle>';
+                Circle2.innerHTML = '<px-percent-circle val="' + CountAdd2 + '" max="100" thickness="20"></px-percent-circle>';
+                Circle3.innerHTML = '<px-percent-circle val="' + CountAdd3 + '" max="100" thickness="20"></px-percent-circle>';
+                Circle4.innerHTML = '<px-percent-circle val="' + CountAdd4 + '" max="100" thickness="20"></px-percent-circle>';
+            }
+
+
+
+            //Priority Function
+            function displayOutput(priorityColor) {
+                output.innerHTML += '<px-map-marker-static id="PoliceCall" class="marker" style="display:none;" lat="' + latitude + '" lng="' + longitude + '" type="' + priorityColor + '">' +
+                    '<px-map-popup-data title="' + incident_num + '" data=\'{"Year":"' + date_time
+                    + '","Date":"' + date_time
+                    + '","Location":"' + full_address
+                    + '","Level of Emergency":"' + priority
+                    + '","Call Type":"' + call_type
+                    + '","CITY":"San diego"}\'>'
+                    + '</px-map-popup-data> </px-map-marker-static>';
+            }
+
+
+            //Increments bar graph
+            document.getElementById('bar-graph').setAttribute('chart-data', '[' + priority1 + ',' + priority2 + ',' + priority3 + ',' + priority4 + ']');
+            if (Number(priority) > 0) {
+                calls_this_year++;
+            }
+            var x;
+            if (Number(calls_this_year) > 1) {
+                x = "calls"
+            }
+            else {
+                x = "call"
+            }
+            //console.log(calls_this_year);
+            output2.innerHTML = '<px-key-value-pair ' +
+                'label="This Year" ' +
+                'value= "' + calls_this_year + '" ' +
+                'uom="" size="alpha"></px-key-value-pair>';
+            counter = counter + 1;
+            console.log(counter);
+            timer = setTimeout(function () {
+                startSimulation(simObj);
+            }, refreshRate);
+        }
+    }
+</script>
+</body>
+
+</html>
